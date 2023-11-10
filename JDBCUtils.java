@@ -262,12 +262,8 @@ public class JDBCUtils {
               break;
             case Types.TIMESTAMP:
               /*
-               * Get the timestamp in UTC time zone by default
-               * to avoid being affected by the remote server's time zone.
                */
-              java.util.Calendar cal = Calendar.getInstance();
-              cal.setTimeZone(TimeZone.getTimeZone("UTC"));
-              Timestamp resTimestamp = tmpResultSet.getTimestamp(i + 1, cal);
+              Timestamp resTimestamp = tmpResultSet.getTimestamp(i + 1);
               if (resTimestamp != null) {
                 /* Timestamp is returned as text in ISO 8601 style */
                 tmpArrayOfResultRow[i] = resTimestamp.toInstant().toString();
